@@ -1,8 +1,6 @@
 package com.springboot.estudo.service;
 
 import com.springboot.estudo.domain.Anime;
-import com.springboot.estudo.repository.AnimeRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
