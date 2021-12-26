@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Service
 public class AnimeService {
 
-    private static List<Anime> animes;
+    private static final List<Anime> animes;
 
     static {
         animes = new ArrayList<>(List.of(new Anime(1L,"Naruto"), new Anime(2L,"Berserk")));
@@ -33,5 +33,9 @@ public class AnimeService {
         anime.setId(ThreadLocalRandom.current().nextLong(3, 10000000));
         animes.add(anime);
         return anime;
+    }
+
+    public void delete(Long id) {
+        animes.remove(findbyId(id));
     }
 }
