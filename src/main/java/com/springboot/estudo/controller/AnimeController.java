@@ -23,6 +23,6 @@ public class AnimeController {
     public List<Anime> list() {
 
         log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
-        return List.of(new Anime("Naruto"), new Anime("Berserk"));
+        return List.of(new Anime("Naruto"), new Anime("Berserk"), new Anime("Dororo"));
     }
 }

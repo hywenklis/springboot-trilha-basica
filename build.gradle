@@ -21,6 +21,8 @@ dependencies {
 
     testCompileOnly 'org.projectlombok:lombok:1.18.22'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    compileOnly("org.springframework.boot:spring-boot-devtools")
 }
 
 test {
