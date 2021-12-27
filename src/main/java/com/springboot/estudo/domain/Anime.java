@@ -9,8 +9,9 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@ToString
 @Entity
+@Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Anime {
@@ -18,7 +19,6 @@ public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     private String name;
 }
