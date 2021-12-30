@@ -17,10 +17,13 @@ import java.util.List;
 public class AnimeService {
 
     private final AnimeRepository animeRepository;
-    private final List<Anime> animes;
 
     public List<Anime> listAll() {
         return animeRepository.findAll();
+    }
+
+    public List<Anime> findByName(String name) {
+        return animeRepository.findByName(name);
     }
 
     public Anime findbyId(Long id) {
