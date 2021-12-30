@@ -3,15 +3,14 @@ package com.springboot.estudo.service;
 import com.springboot.estudo.domain.Anime;
 import com.springboot.estudo.dto.AnimePostDto;
 import com.springboot.estudo.dto.AnimePutDto;
+import com.springboot.estudo.mapper.AnimeMapper;
 import com.springboot.estudo.repository.AnimeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +29,7 @@ public class AnimeService {
     }
 
     public Anime save(AnimePostDto animePostDto) {
-        return animeRepository.save(Anime.builder().name(animePostDto.getName()).build());
+        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostDto));
     }
 
     public void delete(Long id) {
@@ -39,10 +38,6 @@ public class AnimeService {
 
     public void replace(AnimePutDto animePutDto) {
         findbyId(animePutDto.getId());
-        Anime anime = Anime.builder()
-                .id(animePutDto.getId())
-                .name(animePutDto.getName())
-                .build();
-        animeRepository.save(anime);
+        animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePutDto));
     }
 }

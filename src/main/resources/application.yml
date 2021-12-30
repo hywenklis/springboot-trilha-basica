@@ -1,6 +1,6 @@
 server:
   error:
-    include-stracktrace: on_param
+    include-message: always
 
 spring:
   datasource:
