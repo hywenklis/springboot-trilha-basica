@@ -3,6 +3,7 @@ package com.springboot.estudo.service;
 import com.springboot.estudo.domain.Anime;
 import com.springboot.estudo.dto.AnimePostDto;
 import com.springboot.estudo.dto.AnimePutDto;
+import com.springboot.estudo.exception.BadRequestException;
 import com.springboot.estudo.mapper.AnimeMapper;
 import com.springboot.estudo.repository.AnimeRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class AnimeService {
 
     public Anime findbyId(Long id) {
         return animeRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found!"));
+                .orElseThrow(() -> new BadRequestException("Anime not found!"));
     }
 
     public Anime save(AnimePostDto animePostDto) {
