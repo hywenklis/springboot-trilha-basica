@@ -1,5 +1,6 @@
 server:
   error:
+    include-stacktrace: on_param
     include-message: always
 
 spring:
