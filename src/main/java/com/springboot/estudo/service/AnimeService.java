@@ -3,13 +3,15 @@ package com.springboot.estudo.service;
 import com.springboot.estudo.domain.Anime;
 import com.springboot.estudo.dto.AnimePostDto;
 import com.springboot.estudo.dto.AnimePutDto;
+import com.springboot.estudo.exception.BadRequestException;
 import com.springboot.estudo.mapper.AnimeMapper;
 import com.springboot.estudo.repository.AnimeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -17,17 +19,21 @@ import java.util.List;
 public class AnimeService {
 
     private final AnimeRepository animeRepository;
-    private final List<Anime> animes;
 
-    public List<Anime> listAll() {
-        return animeRepository.findAll();
+    public Page<Anime> listAll(Pageable pageable) {
+        return animeRepository.findAll(pageable);
+    }
+
+    public List<Anime> findByName(String name) {
+        return animeRepository.findByName(name);
     }
 
     public Anime findbyId(Long id) {
         return animeRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found!"));
+                .orElseThrow(() -> new BadRequestException("Anime not found!"));
     }
 
+    @Transactional
     public Anime save(AnimePostDto animePostDto) {
         return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostDto));
     }
