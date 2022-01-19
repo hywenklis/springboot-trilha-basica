@@ -25,7 +25,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AnimeController {
 
-    private final DateUtil dateUtil;
     private final AnimeService animeService;
 
     @GetMapping
@@ -36,8 +35,13 @@ public class AnimeController {
                     direction = Sort.Direction.ASC,
                     page = 0, size = 5) Pageable pageable) {
 
-        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+
         return ResponseEntity.ok(animeService.listAll(pageable));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Anime>> listAll() {
+        return ResponseEntity.ok(animeService.listAllNonPageable());
     }
 
     @GetMapping("/{id}")
