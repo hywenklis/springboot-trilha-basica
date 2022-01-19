@@ -2,9 +2,11 @@ package com.springboot.estudo.controller;
 
 import com.springboot.estudo.domain.Anime;
 import com.springboot.estudo.dto.AnimePostDto;
+import com.springboot.estudo.dto.AnimePutDto;
 import com.springboot.estudo.service.AnimeService;
 import com.springboot.estudo.util.AnimeCreator;
 import com.springboot.estudo.util.AnimePostDtoCreator;
+import com.springboot.estudo.util.AnimePutDtoCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +18,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
@@ -47,6 +51,10 @@ class AnimeControllerTest {
 
         BDDMockito.when(animeServiceMock.save(ArgumentMatchers.any(AnimePostDto.class)))
                 .thenReturn(AnimeCreator.createValidAnime());
+
+        BDDMockito.doNothing().when(animeServiceMock).replace(ArgumentMatchers.any(AnimePutDto.class));
+
+        BDDMockito.doNothing().when(animeServiceMock).delete(ArgumentMatchers.anyLong());
     }
 
     @Test
@@ -135,5 +143,29 @@ class AnimeControllerTest {
                 .isNotNull()
                 .isEqualTo(AnimeCreator.createValidAnime().getName());
     }
+
+    @Test
+    @DisplayName("Replace updates anime when successful")
+    void replaceUpdatesAnimeWhenSuccessful() {
+
+        Assertions.assertThatCode(() -> animeController.replace(AnimePutDtoCreator.createAnimePutDto()))
+                        .doesNotThrowAnyException();
+
+        ResponseEntity<Void> entity = animeController.replace(AnimePutDtoCreator.createAnimePutDto());
+        Assertions.assertThat(entity).isNotNull();
+        Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    @DisplayName("Delete removes anime when successful")
+    void deleteRemovesAnimeWhenSuccessful() {
+
+        Assertions.assertThatCode(() -> animeController.delete(1L)).doesNotThrowAnyException();
+
+        ResponseEntity<Void> entity = animeController.delete(1L);
+        Assertions.assertThat(entity).isNotNull();
+        Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+    }
+
 
 }
