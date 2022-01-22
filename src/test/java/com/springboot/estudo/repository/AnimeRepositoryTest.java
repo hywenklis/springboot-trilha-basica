@@ -3,6 +3,7 @@ package com.springboot.estudo.repository;
 import com.springboot.estudo.domain.Anime;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 import static com.springboot.estudo.util.AnimeCreator.createAnimeToBeSaved;
 
+@Tag("unit")
 @DataJpaTest
 @DisplayName("Test for Anime Repository")
 class AnimeRepositoryTest {
