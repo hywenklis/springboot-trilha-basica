@@ -1,10 +1,8 @@
 package com.springboot.estudo.integration;
 
 import com.springboot.estudo.domain.Anime;
-import com.springboot.estudo.dto.AnimePostDto;
 import com.springboot.estudo.repository.AnimeRepository;
 import com.springboot.estudo.util.AnimeCreator;
-import com.springboot.estudo.util.AnimePostDtoCreator;
 import com.springboot.estudo.wrapper.PageableResponse;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
