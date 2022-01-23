@@ -61,7 +61,7 @@ class AnimeServiceTest {
     void listAllReturnsListOfAnimesInsidePageObjectWhenSuccessful() {
 
         String expectedName = AnimeCreator.createValidAnime().getName();
-        Page<Anime> animePage = animeService.listAll(PageRequest.of(1,1));
+        Page<Anime> animePage = animeService.listAll(PageRequest.of(1, 1));
 
         Assertions.assertThat(animePage).isNotNull();
 

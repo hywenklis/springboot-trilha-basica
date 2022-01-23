@@ -4,7 +4,6 @@ import com.springboot.estudo.domain.Anime;
 import com.springboot.estudo.dto.AnimePostDto;
 import com.springboot.estudo.dto.AnimePutDto;
 import com.springboot.estudo.service.AnimeService;
-import com.springboot.estudo.util.DateUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
