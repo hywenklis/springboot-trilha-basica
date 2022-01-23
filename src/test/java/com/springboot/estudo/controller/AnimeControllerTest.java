@@ -120,7 +120,6 @@ class AnimeControllerTest {
     }
 
 
-
     @Test
     @DisplayName("Find by Name returns list of anime when anime is not found")
     void findByNameReturnsListOfAnimeWhenAnimeIsNotFound() {
@@ -151,7 +150,7 @@ class AnimeControllerTest {
     void replaceUpdatesAnimeWhenSuccessful() {
 
         Assertions.assertThatCode(() -> animeController.replace(AnimePutDtoCreator.createAnimePutDto()))
-                        .doesNotThrowAnyException();
+                .doesNotThrowAnyException();
 
         ResponseEntity<Void> entity = animeController.replace(AnimePutDtoCreator.createAnimePutDto());
         Assertions.assertThat(entity).isNotNull();
